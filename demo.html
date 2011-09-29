@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Lazy Load</title>
+  <style type="text/css">
+    body {
+      background: #fff;
+      font: 12px Arial, sans-serif;
+      color: #222;
+      margin: 40px;
+      text-align: center;
+    }
+
+    img {
+      background: #fff;
+      border: 0;
+      display: inline-block;
+      margin: 40px;
+      vertical-align: bottom;
+    }
+  </style>
+</head>
+
+<body>    
+  <img data-src="img/bmw_m1_hood.jpg" width="765" height="574" alt="BMW M1 Hood"><br/>
+  <img data-src="img/bmw_m1_side.jpg" width="765" height="574" alt="BMW M1 Side"><br/>
+  <img data-src="img/viper_1.jpg" width="765" height="574" alt="Viper 1"><br/>
+  <img data-src="img/viper_corner.jpg" width="765" height="574" alt="Viper Corner"><br/>
+  <img data-src="img/bmw_m3_gt.jpg" width="765" height="574" alt="BMW M3 GT"><br/>
+  <img data-src="img/corvette_pitstop.jpg" width="765" height="574" alt="Corvette Pitstop"><br/>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="jquery.lazyload.js"></script>
+  <script>
+      $(document).ready(function(e){
+          $("img").lazyload();
+      });
+  </script>
+</body>
+</html>
