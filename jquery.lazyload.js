@@ -1,15 +1,15 @@
 /*
  * Lazy Load - jQuery plugin for lazy loading images
- *
  * Copyright (c) 2007-2009 Mika Tuupola
  *
  * Licensed under the MIT license:
  *   http://www.opensource.org/licenses/mit-license.php
  *
  * Project home:
- *   http://www.appelsiini.net/projects/lazyload
+ *   https://github.com/neojp/jquery_lazyload
  *
- * Version:  1.5.0
+ * Original Project home:
+ *   http://www.appelsiini.net/projects/lazyload   
  *
  */
 (function($) {
@@ -19,7 +19,8 @@
             threshold    : 0,
             failurelimit : 0,
             event        : "scroll",
-            effect       : "show",
+            //effect       : "show",
+            effect       : "fadeIn",
             container    : window
         };
                 
@@ -31,7 +32,6 @@
         var elements = this;
         if ("scroll" == settings.event) {
             $(settings.container).bind("scroll", function(event) {
-                
                 var counter = 0;
                 elements.each(function() {
                     if ($.abovethetop(this, settings) ||
@@ -46,6 +46,7 @@
                         }
                     }
                 });
+
                 /* Remove image from array so it is not looped next time. */
                 var temp = $.grep(elements, function(element) {
                     return !element.loaded;
@@ -57,24 +58,13 @@
         this.each(function() {
             var self = this;
             
-            /* Save original only if it is not defined in HTML. */
-            if (undefined == $(self).attr("original")) {
-                $(self).attr("original", $(self).attr("src"));     
-            }
-
             if ("scroll" != settings.event || 
                     undefined == $(self).attr("src") || 
-                    settings.placeholder == $(self).attr("src") || 
                     ($.abovethetop(self, settings) ||
                      $.leftofbegin(self, settings) || 
                      $.belowthefold(self, settings) || 
                      $.rightoffold(self, settings) )) {
-                        
-                if (settings.placeholder) {
-                    $(self).attr("src", settings.placeholder);      
-                } else {
-                    $(self).removeAttr("src");
-                }
+                
                 self.loaded = false;
             } else {
                 self.loaded = true;
@@ -87,11 +77,11 @@
                         .bind("load", function() {
                             $(self)
                                 .hide()
-                                .attr("src", $(self).attr("original"))
+                                .attr("src", $(self).data("src"))
                                 [settings.effect](settings.effectspeed);
                             self.loaded = true;
                         })
-                        .attr("src", $(self).attr("original"));
+                        .attr("src", $(self).data("src"));
                 };
             });
 
@@ -150,7 +140,8 @@
             var fold = $(settings.container).offset().left;
         }
         return fold >= $(element).offset().left + settings.threshold + $(element).width();
-    };
+    }
+
     /* Custom selectors for your convenience.   */
     /* Use as $("img:below-the-fold").something() */
 
