@@ -1,14 +1,22 @@
-h3. Changelog
+h1. *Manual* Lazy Load Plugin for jQuery
 
-h4. 1.5.0
 
-* Support for removing the src attribute already in HTML. This is not a drop in solution but gives additional speed for those who need it. Modified patch by Jeremy Pollock.
+Forked version from "https://github.com/tuupola/jquery_lazyload":https://github.com/tuupola/jquery_lazyload
+Original script by Mika Tuupola - "http://www.appelsiini.net/projects/lazyload":http://www.appelsiini.net/projects/lazyload
 
-h4. 1.4.0
+h2. Primary changes
 
-* When scrolling down quickly do not load the images above the top (patch by Bart Bruil).
+ * Use HTML5 @data@ attributes and @$.data()@ jQuery built-in functionality instead of the @original@ attributes - performance improvement
+ * Does *not* remove default @src@ attributes from images
+ * Web developers *MUST* manually remove the src attributes and change them to @data-src@, this could be easily done by any Back-End code via built-in filters in most Content Management Systems and search & replace from code editors.
 
-h4. 1.3.2
+h2. Notes
+ * Some modern browsers (eg. webkit) will download all images with @src@ attributes and *this plugin will not work*. _More info at_ "http://bugs.webkit.org/show_bug.cgi?id=6656":http://bugs.webkit.org/show_bug.cgi?id=6656
+ * To not have a @src@ attribute by default _might_ not index images by search engines and screen readers
 
-* Support for scrolling within a container.
-* Fixed IE not loading images. 
+h2. Code example
+
+<pre>
+<img data-src="mylargeimage.png" width="960" height="350" alt="Large demo image">
+<script>$('img').lazyload();</script>
+</pre>
