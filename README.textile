@@ -2,13 +2,13 @@ h1. *Manual* Lazy Load Plugin for jQuery
 
 
 Forked version from "https://github.com/tuupola/jquery_lazyload":https://github.com/tuupola/jquery_lazyload
-Original script by Mika Tuupola - "http://www.appelsiini.net/projects/lazyload":http://www.appelsiini.net/projects/lazyload
+Original script by *Mika Tuupola* - "http://www.appelsiini.net/projects/lazyload":http://www.appelsiini.net/projects/lazyload
 
 h2. Primary changes
 
  * Use HTML5 @data@ attributes and @$.data()@ jQuery built-in functionality instead of the @original@ attributes - performance improvement
  * Does *not* remove default @src@ attributes from images
- * Web developers *MUST* manually remove the src attributes and change them to @data-src@, this could be easily done by any Back-End code via built-in filters in most Content Management Systems and search & replace from code editors.
+ * Web developers *MUST* manually remove the @src@ attributes and change them to @data-src@, this could easily be done with any Backend code - either using built-in filters in most Content Management Systems or search & replace in IDEs, code editors, etc.
 
 h2. Notes
  * Some modern browsers (eg. webkit) will download all images with @src@ attributes and *this plugin will not work*. _More info at_ "http://bugs.webkit.org/show_bug.cgi?id=6656":http://bugs.webkit.org/show_bug.cgi?id=6656
