@@ -16,12 +16,12 @@
 
     $.fn.lazyload = function(options) {
         var settings = {
-            threshold    : 0,
-            failurelimit : 0,
+            threshold    : 20,
+            failurelimit : 5,
             event        : "scroll",
-            //effect       : "show",
             effect       : "fadeIn",
-            container    : window
+            //effectspeed: "fast",
+            container    : window,
         };
                 
         if(options) {
